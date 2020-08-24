@@ -33,15 +33,15 @@ avg_weather = fullweather.groupBy("COUNTRY_FULL").avg()
 hotest_country = avg_weather.sort("avg(TEMP)", ascending=False).limit(1)
 
 # [x] 2. Which country had the coldest average mean temperature over the year?
-coldest_country = avg_weather.sort("avg(TEMP)", ascending=True).limit(1
+coldest_country = avg_weather.sort("avg(TEMP)", ascending=True).limit(1)
 
 # [x] 3. Which country had the second highest average mean wind speed over the year?
 windy_country = avg_weather.sort("avg(WDSP)", ascending=False).limit(2)
-windy_country.sort("avg(WDSP)", ascending=False).show()
+second_windy_country = windy_country.sort("avg(WDSP)", ascending=True).limit(1)
 
 # [x] 4. Which country had the most consecutive days of tornadoes/funnel cloud formations?
 tfc_days = fullweather.filter(fullweather['FRSHTT']%2 ==1)
-tfc_days.select(tfc_days['COUNTRY_FULL']).groupBy('COUNTRY_FULL').count().sort('count', ascending=False).limit(1)
+most_tornado_country = tfc_days.select(tfc_days['COUNTRY_FULL']).groupBy('COUNTRY_FULL').count().sort('count', ascending=False).limit(1)
 
 
 
